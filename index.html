@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#160804">
+
+  <title>Companion Buddy — Happy Diwali</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="diwali-stage">
+
+    <img
+      class="environment-bg"
+      src="assets/buddy/diwali-environment.png"
+      alt=""
+      aria-hidden="true"
+    >
+
+    <div class="diya-flame diya-flame-left" aria-hidden="true"></div>
+    <div class="diya-flame diya-flame-right" aria-hidden="true"></div>
+    <div class="diya-flame diya-flame-bottom" aria-hidden="true"></div>
+
+    <!-- BUDDY ANIMATION -->
+    <section class="buddy-intro">
+      <img
+        id="buddyAnimation"
+        src="assets/buddy/buddy-welcome-instruction.gif"
+        alt="Buddy welcoming you to the Diwali celebration"
+        draggable="false"
+      >
+    </section>
+
+    <!-- FIRECRACKER LETTERING -->
+    <section class="cracker-scene">
+      <canvas
+        id="crackerCanvas"
+        aria-label="Firecracker lettering"
+      ></canvas>
+    </section>
+
+    <!-- ANAR FOUNTAIN -->
+    <div class="anar-fountain" id="anarFountain" aria-hidden="true">
+
+      <!-- ORIGINAL ANAR IMAGE -->
+      <img
+        id="anarImage"
+        class="anar-image"
+        src="assets/buddy/anar-unlit.png"
+        alt=""
+        draggable="false"
+      >
+
+      <!-- JAVASCRIPT-GENERATED FOUNTAIN SPARKS -->
+      <div
+        class="anar-particle-layer"
+        id="anarParticles"
+        aria-hidden="true"
+      ></div>
+
+    </div>
+
+    <!-- HAPPY DIWALI FINALE -->
+    <section
+      class="diwali-finale"
+      aria-live="polite"
+      aria-label="Happy Diwali"
+      aria-hidden="true"
+    >
+
+      <div class="sparkle-layer" id="sparkleLayer"></div>
+
+      <div class="finale-content">
+        <div class="greeting-happy">Happy</div>
+        <h1>DIWALI</h1>
+        <div class="greeting-ornament">✦</div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

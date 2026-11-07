@@ -1,0 +1,1173 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: #080403;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* =========================================
+   MAIN DIWALI STAGE
+========================================= */
+
+.diwali-stage {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 540px);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #1b0a05;
+  box-shadow: 0 0 70px #000;
+}
+
+/* =========================================
+   ENVIRONMENT BACKGROUND
+========================================= */
+
+.environment-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* =========================================
+   BUDDY CHARACTER
+========================================= */
+
+.buddy-intro {
+  position: absolute;
+  z-index: 4;
+  top: 21%;
+  left: 7%;
+  width: 86%;
+  height: 32%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.buddy-intro img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px #0008);
+}
+
+/* =========================================
+   FIRECRACKER ARRANGEMENT
+========================================= */
+
+.cracker-scene {
+  position: absolute;
+  z-index: 3;
+  top: 56%;
+  left: 2%;
+  width: 96%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+}
+
+#crackerCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* =========================================
+   DIYA FLAMES
+========================================= */
+
+.diya-flame {
+  position: absolute;
+  z-index: 3;
+  width: 15px;
+  height: 29px;
+  border-radius: 80% 10% 65% 65%;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 75%,
+      #fffde0 0%,
+      #fff3a0 25%,
+      #ffb52c 58%,
+      #ff6b08 85%,
+      transparent 100%
+    );
+
+  transform-origin: center bottom;
+
+  filter:
+    drop-shadow(0 0 5px #fff0a0)
+    drop-shadow(0 0 11px #ff9c20)
+    drop-shadow(0 0 20px #ff7800);
+
+  animation: diyaFlicker 0.9s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+.diya-flame::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 17px;
+  left: 5px;
+  bottom: 2px;
+  border-radius: 80% 10% 65% 65%;
+  background: #fffde0;
+  filter: blur(1px);
+  animation: innerFlame 0.75s ease-in-out infinite alternate;
+}
+
+.diya-flame::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 7px;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(4deg);
+  background: #241008;
+  border-radius: 50%;
+  box-shadow: 0 0 2px #ffb34a;
+}
+
+/* Original Flame Positions */
+
+.diya-flame-left {
+  left: 5.3%;
+  top: 47.5%;
+}
+
+.diya-flame-right {
+  left: 89.8%;
+  top: 76.2%;
+}
+
+.diya-flame-bottom {
+  left: 6.7%;
+  top: 86.2%;
+}
+
+/* =========================================
+   FLAME ANIMATIONS
+========================================= */
+
+@keyframes diyaFlicker {
+  0% {
+    transform: rotate(-3deg) scaleX(0.96) scaleY(0.97);
+    opacity: 0.94;
+  }
+
+  50% {
+    transform: rotate(2deg) scaleX(1.02) scaleY(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(-2deg) scaleX(0.97) scaleY(0.99);
+    opacity: 0.96;
+  }
+}
+
+@keyframes innerFlame {
+  from {
+    transform: scaleY(0.94);
+    opacity: 0.9;
+  }
+
+  to {
+    transform: scaleY(1.06);
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   ANAR FOUNTAIN
+   ORIGINAL IMAGE + WIDE PARTICLE LAYER
+========================================= */
+
+.anar-fountain {
+  position: absolute;
+
+  left: 82.5%;
+  top: 60%;
+
+  width: 92px;
+  height: 145px;
+
+  z-index: 8;
+
+  transform: translateX(-50%);
+  transform-origin: center bottom;
+
+  opacity: 1;
+  visibility: visible;
+
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* =========================================
+   ORIGINAL ANAR IMAGE
+========================================= */
+
+.anar-image {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  filter:
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.65));
+}
+
+/* Fuse ignition glow */
+
+.anar-fountain.anar-igniting .anar-image {
+  animation: anarIgnitionGlow 0.65s ease-in-out infinite alternate;
+}
+
+@keyframes anarIgnitionGlow {
+  from {
+    filter:
+      brightness(1)
+      drop-shadow(0 0 3px rgba(255, 164, 38, 0.3));
+  }
+
+  to {
+    filter:
+      brightness(1.2)
+      drop-shadow(0 0 15px rgba(255, 174, 48, 0.9));
+  }
+}
+
+/* Active fountain glow */
+
+.anar-fountain.anar-active .anar-image {
+  animation: anarActiveGlow 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes anarActiveGlow {
+  from {
+    filter:
+      brightness(1.12)
+      drop-shadow(0 0 12px rgba(255, 167, 35, 0.7));
+  }
+
+  to {
+    filter:
+      brightness(1.3)
+      drop-shadow(0 0 23px rgba(255, 193, 70, 1));
+  }
+}
+
+/* =========================================
+   ANAR PARTICLE LAYER
+   EXTRA SPACE FOR FULL UPWARD + DOWNWARD MOTION
+========================================= */
+
+.anar-particle-layer {
+  position: absolute;
+
+  /*
+    Extra space above the Anar for upward-moving sparks.
+    The original Anar image keeps its exact size and position.
+  */
+
+  left: -85%;
+  right: -85%;
+  top: -100%;
+  bottom: 0;
+
+  z-index: 3;
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Canvas created by JavaScript */
+
+.anar-particle-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Individual golden sparks (legacy DOM fallback) */
+
+.anar-particle-layer i {
+  position: absolute;
+
+  left: 50%;
+  top: 68%;
+
+  display: block;
+
+  width: var(--spark-size, 3px);
+  height: var(--spark-size, 3px);
+
+  border-radius: 50%;
+
+  background: var(--spark-color, #ffd36b);
+
+  box-shadow:
+    0 0 4px 1px var(--spark-color, #ffd36b),
+    0 0 9px 2px rgba(255, 174, 48, 0.65),
+    0 0 16px rgba(255, 205, 105, 0.4);
+
+  opacity: 0;
+
+  pointer-events: none;
+  will-change: transform, opacity;
+
+  animation:
+    anarSparkRise
+    var(--spark-duration, 900ms)
+    cubic-bezier(0.18, 0.62, 0.36, 1)
+    forwards;
+}
+
+@keyframes anarSparkRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.3);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  58% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate3d(var(--spark-dx, 0px), var(--spark-dy, -100px), 0)
+      scale(0.12);
+  }
+}
+
+/* =========================================
+   ANAR GLOW FADE
+   ORIGINAL ANAR IMAGE REMAINS VISIBLE
+========================================= */
+
+.anar-fountain.anar-fading .anar-image {
+  animation: anarGlowFade 1.5s ease-out forwards;
+}
+
+@keyframes anarGlowFade {
+  from {
+    filter:
+      brightness(1.2)
+      drop-shadow(0 0 22px rgba(255, 174, 48, 0.95));
+  }
+
+  to {
+    filter:
+      brightness(1)
+      drop-shadow(0 4px 8px rgba(0, 0, 0, 0.65));
+  }
+}
+
+/* =========================================
+   ROCKET POSITION
+========================================= */
+
+.diwali-rocket {
+  position: absolute;
+  left: 90%;
+  top: 64.5%;
+
+  width: 26px;
+  height: 68px;
+
+  z-index: 8;
+
+  transform: rotate(32deg);
+  transform-origin: center center;
+
+  pointer-events: none;
+}
+
+/* =========================================
+   ROCKET CONNECTING THREAD
+========================================= */
+
+.rocket-thread {
+  position: absolute;
+
+  left: 87.8%;
+  top: 68.4%;
+
+  width: 3.8%;
+  height: 15px;
+
+  z-index: 7;
+
+  border-bottom: 2px solid #ead3a7;
+  border-radius: 0 0 55% 50%;
+
+  transform: rotate(-12deg);
+
+  filter: drop-shadow(0 1px 1px #0009);
+
+  pointer-events: none;
+}
+
+.rocket-thread.thread-burned {
+  animation: threadBurn 0.5s ease-out forwards;
+}
+
+@keyframes threadBurn {
+  0% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   ROCKET BODY
+========================================= */
+
+.rocket-body {
+  position: absolute;
+
+  left: 50%;
+  top: 9px;
+
+  transform: translateX(-50%);
+
+  width: 23px;
+  height: 48px;
+
+  border-radius: 40% 40% 12% 12%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #17418c 0px,
+      #17418c 5px,
+      #eeeae1 5px,
+      #eeeae1 10px
+    );
+
+  border: 1px solid #b9b9ae;
+
+  box-shadow:
+    inset 1px 0 2px #ffffff40,
+    inset -2px 0 3px #0004;
+}
+
+/* =========================================
+   RED ROCKET NOSE
+========================================= */
+
+.rocket-nose {
+  position: absolute;
+
+  top: -17px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 19px solid #d92d20;
+
+  filter: drop-shadow(0 1px 1px #0006);
+}
+
+/* =========================================
+   ROCKET WINDOW
+========================================= */
+
+.rocket-window {
+  position: absolute;
+
+  top: 40%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #fff1a1;
+  box-shadow:
+    0 0 3px #ffcf42,
+    0 0 6px #ff9c20;
+}
+
+/* =========================================
+   ROCKET FINS
+========================================= */
+
+.rocket-fin-left,
+.rocket-fin-right {
+  position: absolute;
+
+  bottom: 8%;
+
+  width: 9px;
+  height: 17px;
+
+  background: #d92d20;
+  border: 1px solid #d8a04d;
+}
+
+.rocket-fin-left {
+  left: -5px;
+  transform: skewY(25deg);
+}
+
+.rocket-fin-right {
+  right: -5px;
+  transform: skewY(-25deg);
+}
+
+/* =========================================
+   ROCKET EXHAUST
+========================================= */
+
+.rocket-flame {
+  position: absolute;
+
+  left: 50%;
+  bottom: -7px;
+
+  transform: translateX(-50%);
+
+  width: 9px;
+  height: 17px;
+
+  border-radius: 50% 50% 70% 70%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #fff9b0,
+      #ffb326,
+      #ff5a13,
+      transparent
+    );
+
+  filter:
+    drop-shadow(0 0 4px #ff8c22)
+    drop-shadow(0 0 7px #ff6b08);
+}
+
+/* =========================================
+   ROCKET LAUNCH ANIMATION
+========================================= */
+
+.diwali-rocket.rocket-launching {
+  animation: rocketLaunch 1.5s cubic-bezier(0.2, 0.65, 0.3, 1) forwards;
+}
+
+@keyframes rocketLaunch {
+  0% {
+    transform: translate(0, 0) rotate(32deg) scale(1);
+    opacity: 1;
+  }
+
+  15% {
+    transform: translate(-3px, -12px) rotate(32deg) scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-35px, -115vh) rotate(32deg) scale(0.65);
+    opacity: 0;
+  }
+}
+
+.diwali-rocket.rocket-launching .rocket-flame {
+  animation: rocketExhaust 0.12s ease-in-out infinite alternate;
+}
+
+@keyframes rocketExhaust {
+  from {
+    transform: translateX(-50%) scaleY(0.85) scaleX(0.9);
+    filter: drop-shadow(0 0 5px #ff8c22);
+  }
+
+  to {
+    transform: translateX(-50%) scaleY(1.7) scaleX(1.2);
+    filter: drop-shadow(0 0 12px #ff6b08);
+  }
+}
+
+/* =========================================
+   DIWALI FINALE OVERLAY
+========================================= */
+
+.diwali-finale {
+  position: absolute;
+  inset: 0;
+
+  z-index: 20;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(89, 32, 8, 0.88),
+      rgba(12, 4, 2, 0.96)
+    );
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+.diwali-finale.finale-visible {
+  visibility: visible;
+  animation: finaleAppear 0.9s ease-out forwards;
+}
+
+@keyframes finaleAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   HAPPY DIWALI GREETING
+========================================= */
+
+.finale-content {
+  position: relative;
+  z-index: 3;
+
+  width: 90%;
+
+  text-align: center;
+
+  transform: scale(0.7);
+  opacity: 0;
+}
+
+.finale-visible .finale-content {
+  animation: greetingAppear 1s cubic-bezier(0.2, 1.4, 0.4, 1) 0.3s forwards;
+}
+
+@keyframes greetingAppear {
+  from {
+    transform: scale(0.7) translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.finale-content h1 {
+  color: #fff1b5;
+
+  font-size: clamp(36px, 9vw, 58px);
+
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1.15;
+
+  text-shadow:
+    0 0 10px #ffae30,
+    0 0 25px #ff7b16,
+    0 0 50px #ff4b08,
+    0 5px 15px #000;
+}
+
+.finale-content h1 span {
+  display: block;
+
+  margin-top: 12px;
+
+  color: #ffb52e;
+
+  font-size: 1.15em;
+
+  text-shadow:
+    0 0 12px #ffdc7a,
+    0 0 30px #ff7b16,
+    0 0 55px #ff4b08;
+}
+
+.finale-content p {
+  margin-top: 22px;
+
+  color: #ffe6c0;
+
+  font-size: clamp(14px, 3.5vw, 19px);
+
+  line-height: 1.6;
+
+  letter-spacing: 1px;
+
+  text-shadow: 0 2px 8px #000;
+}
+
+/* =========================================
+   FIREWORKS LAYER
+========================================= */
+
+.fireworks-layer {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.firework-burst {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  animation: fireworkBloom 1.1s ease-out both;
+}
+
+.firework-burst i {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: var(--particle-color);
+
+  box-shadow:
+    0 0 5px var(--particle-color),
+    0 0 12px var(--particle-color);
+
+  animation: fireworkParticle 1.1s ease-out both;
+}
+
+@keyframes fireworkBloom {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+
+  20% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes fireworkParticle {
+  0% {
+    transform: translate(0, 0) scale(0.2);
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0.1);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+========================================= */
+
+@media (max-width: 400px) {
+
+  .buddy-intro {
+    top: 21%;
+    left: 5%;
+    width: 90%;
+    height: 32%;
+  }
+
+  .cracker-scene {
+    top: 56%;
+    left: 1%;
+    width: 98%;
+  }
+
+  .diwali-rocket {
+    left: 90%;
+    top: 64.5%;
+  }
+
+  .rocket-thread {
+    left: 87.8%;
+    top: 68.4%;
+  }
+
+  .anar-fountain {
+    left: 82.5%;
+    top: 60%;
+    width: 84px;
+    height: 132px;
+  }
+
+  .finale-content {
+    width: 94%;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .diya-flame,
+  .diya-flame::before {
+    animation: none;
+  }
+
+  .diwali-finale,
+  .diwali-rocket {
+    transition-duration: 0.01ms;
+  }
+
+}
+
+/* =========================================
+   FINALE SPARKLE LAYER
+========================================= */
+
+.sparkle-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  display: block;
+
+  width: var(--size, 3px);
+  height: var(--size, 3px);
+
+  border-radius: 50%;
+  background: #fff3bd;
+
+  box-shadow:
+    0 0 5px #fff0a0,
+    0 0 12px #ffbd4a,
+    0 0 20px #ff8c20;
+
+  opacity: 0;
+
+  animation:
+    greetingSparkle
+    var(--duration, 2s)
+    ease-in-out
+    var(--delay, 0s)
+    infinite alternate;
+}
+
+@keyframes greetingSparkle {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
+
+/* =========================================
+   FINALE GREETING TYPOGRAPHY
+========================================= */
+
+.greeting-happy {
+  color: #fff0cf;
+
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(42px, 11vw, 65px);
+
+  line-height: 1;
+  margin-bottom: 8px;
+
+  text-shadow:
+    0 0 10px #ffbd58,
+    0 0 25px #ff8c20;
+}
+
+.finale-content h1 {
+  font-family: "Cinzel", serif;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.greeting-ornament {
+  margin-top: 16px;
+
+  color: #ffd477;
+  font-size: 28px;
+
+  text-shadow:
+    0 0 8px #ffcf65,
+    0 0 20px #ff8c20;
+}
+
+/* =========================================
+   COMPANION BUDDY PROMOTION
+   Appears AFTER Happy Diwali greeting
+========================================= */
+
+.companion-promo {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px 22px;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(92, 39, 10, 0.94) 0%,
+      rgba(35, 13, 5, 0.97) 65%,
+      rgba(12, 4, 2, 0.99) 100%
+    );
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: scale(1.035);
+  transition:
+    opacity 1s ease,
+    transform 1.2s ease,
+    visibility 1s ease;
+}
+
+.companion-promo.promo-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Promotion content */
+
+.promo-content {
+  width: 100%;
+  max-width: 420px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 22px;
+
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+.promo-visible .promo-content {
+  animation: promoContentAppear 1.1s ease-out 0.25s forwards;
+}
+
+@keyframes promoContentAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* App name */
+
+.promo-title {
+  color: #ffe3a1;
+
+  font-family: "Cinzel", serif;
+  font-size: clamp(30px, 8vw, 43px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+
+  text-shadow:
+    0 0 12px rgba(255, 193, 76, 0.65),
+    0 0 30px rgba(255, 133, 30, 0.35);
+}
+
+/* Main message */
+
+.promo-message {
+  max-width: 340px;
+
+  color: #fff2dc;
+
+  font-family: Arial, sans-serif;
+  font-size: clamp(17px, 4.5vw, 21px);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0.3px;
+
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Google Play CTA */
+
+.promo-play-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 54px;
+  padding: 0 25px;
+
+  border: 1px solid rgba(255, 224, 160, 0.85);
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #ffe2a0,
+    #f5b94f
+  );
+
+  color: #2b1608;
+
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.25px;
+
+  box-shadow:
+    0 5px 22px rgba(255, 164, 48, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Gentle golden glow */
+
+.promo-play-badge {
+  animation: promoBadgeGlow 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes promoBadgeGlow {
+  from {
+    box-shadow:
+      0 5px 18px rgba(255, 164, 48, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  to {
+    box-shadow:
+      0 5px 28px rgba(255, 164, 48, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Hide greeting during promotion */
+
+.diwali-finale.promo-mode .finale-content {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .companion-promo,
+  .promo-content,
+  .promo-play-badge {
+    animation: none;
+    transition: none;
+  }
+
+  .promo-visible .promo-content {
+    opacity: 1;
+    transform: none;
+  }
+}
