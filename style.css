@@ -1171,3 +1171,14 @@ body {
     transform: none;
   }
 }
+
+
+/* Google Play CTA click fix */
+.diwali-finale .companion-promo {
+  pointer-events: auto;
+}
+
+.diwali-finale .promo-play-badge {
+  pointer-events: auto;
+  cursor: pointer;
+}
